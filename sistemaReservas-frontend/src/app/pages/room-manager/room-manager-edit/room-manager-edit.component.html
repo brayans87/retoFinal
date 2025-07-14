@@ -1,0 +1,59 @@
+<mat-dialog-content>
+    <mat-toolbar><span>Room Info</span></mat-toolbar>
+
+    <form class="example-container" [formGroup]="form" (submit)="operate()">
+
+        <div [hidden]="true">
+            <mat-form-field>
+                <input matInput placeholder="id" formControlName="id">
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <input matInput placeholder="number" formControlName="number">
+            @if (f['number'].errors?.['required'] && submitted) {
+            <small class="invalid">number is required</small>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+            <input matInput placeholder="price" formControlName="price">
+            @if (f['price'].errors?.['required'] && submitted) {
+            <small class="invalid">price is required</small>
+            }
+        </mat-form-field>
+
+        <label class="example-margin">Type Room:</label>
+        <mat-radio-group formControlName="type">
+            <mat-radio-button class="example-margin" value="Individual">Individual</mat-radio-button>
+            <mat-radio-button class="example-margin" value="Doble">Doble</mat-radio-button>
+            <mat-radio-button class="example-margin" value="Suite">Suite</mat-radio-button>
+        </mat-radio-group>
+
+         @if (f['type'].invalid && submitted ) {
+            <small class="invalid">type is required</small>
+            }
+    
+
+        <label class="example-margin">Available Room:</label>
+        <mat-radio-group formControlName="available">
+            <mat-radio-button class="example-margin" [value]="true">Yes</mat-radio-button>
+            <mat-radio-button class="example-margin" [value]="false">No</mat-radio-button>
+        </mat-radio-group>
+
+          @if (f['available'].invalid && submitted ) {
+            <small class="invalid">available is required</small>
+            }
+
+        <button mat-flat-button type="submit">
+            <span>OK</span>
+            <mat-icon>done</mat-icon>
+        </button>
+        <button mat-flat-button class="cancel-button" type="button" routerLink="/pages/room">
+            <span>Cancel</span>
+            <mat-icon>cancel</mat-icon>
+        </button>
+
+    </form>
+
+</mat-dialog-content>

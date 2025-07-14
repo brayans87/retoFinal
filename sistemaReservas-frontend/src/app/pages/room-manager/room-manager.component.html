@@ -1,0 +1,69 @@
+<router-outlet></router-outlet>
+
+<mat-toolbar>ROOM REGISTRATION</mat-toolbar>
+
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> NUMBER </th>
+      <td mat-cell *matCellDef="let row"> {{row.number}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> TYPE </th>
+      <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> PRICE </th>
+      <td mat-cell *matCellDef="let row"> {{row.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="available">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>  AVAILABLE </th>
+      <td mat-cell *matCellDef="let row"> {{row.available}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ACTIONS </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-flat-button [routerLink]="['edit', row.id]">
+          <span>Edit Available</span>
+          <mat-icon>mode_edit</mat-icon>
+        </button>
+
+    <!--  <button mat-flat-button class="delete-button" (click)="delete( row.id  )">
+          <span>Delete</span>
+          <mat-icon>delete</mat-icon>
+        </button>
+
+        --> 
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+    <tr mat-row *matRowDef="let row; columns: getDisplayedColumns();"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[2, 5, 10, 100]" [length]="totalElements" (page)="showMore($event)"  aria-label="Select page of medics"></mat-paginator>
+
+  <button mat-flat-button style="float: right;" routerLink="/pages/room/new">
+    <span>New</span>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>

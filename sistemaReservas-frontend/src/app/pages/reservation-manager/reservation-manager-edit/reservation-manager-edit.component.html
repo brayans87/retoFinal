@@ -1,0 +1,74 @@
+<mat-dialog-content>
+
+    <mat-toolbar><span>Reservation Info</span></mat-toolbar>
+
+       <div class="example-container">
+
+    <form class="example-container" [formGroup]="form" (submit)="operate()">
+
+        <div [hidden]="true">
+
+            <mat-form-field>
+                <input matInput placeholder="id" formControlName="id">
+            </mat-form-field>
+
+        </div>
+
+
+        <mat-form-field>
+            <input matInput placeholder="customer Name" formControlName="customerName">
+
+            @if (f['customerName'].errors?.['required'] && (f['customerName'].touched || submitted)) {
+            <small class="invalid"> customerName is required</small>
+            }
+
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date" formControlName="checkInDate">
+                <input matEndDate placeholder="End date" formControlName="checkOutDate">
+            </mat-date-range-input>
+            <mat-hint>DD/MM/YYYY - DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+            @if (f['checkInDate'].errors?.['required'] && f['checkOutDate'].errors?.['required'] && (f['room'].touched || submitted)) {
+            <small class="invalid">date is required</small>
+            }
+        </mat-form-field>
+
+        <mat-form-field>
+
+            <mat-select formControlName="room">
+                @for (rs of rooms; track rs) {
+                <mat-option [value]="rs">{{rs.number}}</mat-option>
+                }
+            </mat-select>
+
+            @if (rooms.length ===0 ) {
+            <div class="mensaje-error"> No rooms available, please try again later. </div>
+            }
+
+
+            @if (f['room'].errors?.['required'] && (f['room'].touched || submitted)) {
+            <small class="invalid"> Room is required</small>
+            }
+
+        </mat-form-field>
+
+        <button mat-flat-button type="submit">
+            <span>OK</span>
+            <mat-icon>done</mat-icon>
+        </button>
+        <button mat-flat-button class="cancel-button" type="button" (click)="close()">
+            <span>Cancel</span>
+            <mat-icon>cancel</mat-icon>
+        </button>
+
+
+    </form>
+
+
+    </div>
+</mat-dialog-content>

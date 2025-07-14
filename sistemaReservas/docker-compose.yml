@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  db:
+    image: postgres:15.2
+    container_name: retoFinal
+    restart: always
+
+    environment:
+      - POSTGRES_DB=sistemaReservas
+      - POSTGRES_USER=brayan
+      - POSTGRES_PASSWORD=ospina
+    ports:
+      - "5432:5432"

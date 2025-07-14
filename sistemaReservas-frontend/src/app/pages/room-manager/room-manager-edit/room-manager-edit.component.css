@@ -1,0 +1,33 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container>* {
+    width: 100%;
+}
+
+.invalid {
+    color: red;
+}
+
+  .cancel-button{
+    background-color: red !important;
+    color: white
+  }
+
+  .example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+
